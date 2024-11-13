@@ -53,6 +53,9 @@ def process_yaml_files():
 
         dataset_url = dataset_urls.get(dataset)
 
+        # Domain to pass through for presentation
+        domain = dataset
+
         dataset_content = None
 
         # Loading the remote file into a json object in the code
@@ -68,7 +71,7 @@ def process_yaml_files():
 
         # Second "main" part, converting the STIX data to the Nagivator format
         print(f'[+]\tConverting dataset...')
-        convert_dataset_main(dataset_content,threat_actor,output_file)
+        convert_dataset_main(dataset_content,threat_actor,output_file,domain)
 
         # Reach here once the whole file has been processed, loop if more than one file
         print(f'[+]\tProcessed {yaml_file} and saved output to {output_file}')

@@ -1,8 +1,9 @@
 import stix2
 import json
+import time
 
 # "Main" method, called externally
-def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
+def convert_dataset_main(stix_data, threat_actor_name, output_filepath, domain):
 
     # Using MITRE's own stix2 library to interpret the STIX data
     print("[+]\tParsing STIX data... (this may take some time)")
@@ -13,7 +14,7 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
     threat_actor = None
     for obj in bundle.objects:
         if obj.get('type') == 'intrusion-set':
-            names = [obj.get('name')] + obj.get('aliases') if hasattr(obj, 'aliases') else [obj.get('name')]
+            names = [obj.get('name')] + obj.get('aliases') if 'aliases' in obj.keys() else [obj.get('name')]
             if threat_actor_name.lower() in map(str.lower, names):
                 threat_actor = obj
                 break
@@ -78,7 +79,7 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
         },
         "name": f"Techniques used by {threat_actor_name}",
         "description": f"Techniques used by the threat actor {threat_actor_name}",
-        "domain": "enterprise-attack",
+        "domain": domain,
         "techniques": layer_techniques,
         "gradient": {
 		"colors": [
@@ -91,9 +92,6 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
 	    },
         "legendItems": [],
         "metadata": [],
-        "filters": {
-            "platforms": ["Windows", "Linux", "macOS"]
-        },
         "sorting": 0
     }
 
