@@ -1,0 +1,6 @@
+PyYAML
+stix2
+json
+os
+glob
+urllib
