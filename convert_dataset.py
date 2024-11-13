@@ -1,10 +1,14 @@
 import stix2
 import json
 
+# "Main" method, called externally
 def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
+
+    # Using MITRE's own stix2 library to interpret the STIX data
     print("[+]\tParsing STIX data... (this may take some time)")
     bundle = stix2.parse(stix_data, allow_custom=True)
 
+    # Determining if the threat actor exists in the STIX data, getting all aliases of the actor
     print(f"[+]\tScanning for threat actor '{threat_actor_name}'...")
     threat_actor = None
     for obj in bundle.objects:
@@ -14,35 +18,48 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
                 threat_actor = obj
                 break
 
+    # Code designed to ignore the lack of a threat actor, but note it to the user in the logs (seen in the action logs)
     if not threat_actor:
         print(f"[x]\tThreat actor '{threat_actor_name}' not found in the dataset. Continuing anyway...")
 
-    #todo: efficiency on searching the bundle twice.
-
-    print(f"[+]\tCollecting relationships for threat actor '{threat_actor_name}'...")
+    print(f"[+]\tProcessing bundle objects...")
     used_technique_ids = set()
+    techniques = []
 
-    if threat_actor:
-        for relationship in bundle.objects:
-            if relationship.get('type') == 'relationship' and relationship.get('relationship_type') == 'uses':
-                if relationship.get('source_ref') == threat_actor.get('id'):
-                    target_obj = next((obj for obj in bundle.objects if obj.get('id') == relationship.get('target_ref')), None)
-                    if target_obj and target_obj.get('type') == 'attack-pattern':
-                        used_technique_ids.add(target_obj.get('id'))
+    # If threat_actor is defined, get its ID once
+    threat_actor_id = threat_actor.get('id') if threat_actor else None
 
-    print("[+]\tExtracting techniques...")
-    techniques = [obj for obj in bundle.objects if obj.get('type') == 'attack-pattern']
+    # Process bundle.objects in one loop
+    for obj in bundle.objects:
+        obj_type = obj.get('type')
 
+        # If it's an attack pattern, it goes in techniques
+        if obj_type == 'attack-pattern':
+            techniques.append(obj)
+
+        # If it's a relationship we care about (our threat actor uses it), store it
+        elif obj_type == 'relationship' and obj.get('relationship_type') == 'uses':
+            if threat_actor_id and obj.get('source_ref') == threat_actor_id:
+                target_ref = obj.get('target_ref')
+                used_technique_ids.add(target_ref)
+
+    # Creating a blank layer
     layer_techniques = []
 
+    # Iterating through the techniques, adding them to the layer as we go
     print("[+]\tCollecting Technique IDs...")
     for technique in techniques:
         technique_id = None
 
+        # Getting the reference neessary for proper presentation of the technique in navigator, searching external references
         for external_reference in technique.get('external_references', []):
+
+            # Only mitre-attack sources have external IDs
             if external_reference.get('source_name') == 'mitre-attack':
                 technique_id = external_reference.get('external_id')
                 break
+        
+        # If we can find a technique ID, then we can assign it a colour and add it to the layer
         if technique_id:
             technique_entry = {"techniqueID": technique_id}
             if technique.get('id') in used_technique_ids:
@@ -52,6 +69,7 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
                 technique_entry["color"] = "#909190ff"
             layer_techniques.append(technique_entry)
 
+    # Template taken from a blank layer, modified
     layer = {
         "versions": {
             "attack": "16",
@@ -79,7 +97,7 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath):
         "sorting": 0
     }
 
-
+    # Write final output to the known output filepath
     print("[+]\tWriting to file...")  
     with open(output_filepath, 'w') as f:
         json.dump(layer, f, indent=4)
