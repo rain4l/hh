@@ -8,19 +8,25 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath, domain):
     print("[+]\tParsing STIX data... (this may take some time)")
     bundle = stix2.parse(stix_data, allow_custom=True)
 
-    # Determining if the threat actor exists in the STIX data, getting all aliases of the actor
-    print(f"[+]\tScanning for threat actor '{threat_actor_name}'...")
     threat_actor = None
-    for obj in bundle.objects:
-        if obj.get('type') == 'intrusion-set':
-            names = [obj.get('name')] + obj.get('aliases') if 'aliases' in obj.keys() else [obj.get('name')]
-            if threat_actor_name.lower() in map(str.lower, names):
-                threat_actor = obj
-                break
 
-    # Code designed to ignore the lack of a threat actor, but note it to the user in the logs (seen in the action logs)
-    if not threat_actor:
-        print(f"[x]\tThreat actor '{threat_actor_name}' not found in the dataset. Continuing anyway...")
+    # Determining if the threat actor exists in the STIX data, getting all aliases of the actor
+    if threat_actor_name != None:
+        print(f"[+]\tScanning for threat actor '{threat_actor_name}'...",end="")
+        for obj in bundle.objects:
+            if obj.get('type') == 'intrusion-set':
+                names = [obj.get('name')] + obj.get('aliases') if 'aliases' in obj.keys() else [obj.get('name')]
+                if threat_actor_name.lower() in map(str.lower, names):
+                    threat_actor = obj
+                    # Pretty print if successfully finding the threat actor name in the STIX file
+                    print(" Found!")
+                    break
+
+        # Code designed to ignore the lack of a threat actor, but note it to the user in the logs (seen in the action logs)
+        if not threat_actor:
+            print(f"\n[x]\tThreat actor '{threat_actor_name}' not found in the dataset. Continuing anyway...")
+    else:
+        print(f"[+]\tThreat actor name detected as absent, skipping threat actor identification...")
 
     print(f"[+]\tProcessing bundle objects...")
     used_technique_ids = set()

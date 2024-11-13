@@ -44,6 +44,14 @@ def process_yaml_files():
         with open(yaml_file, 'r') as f:
             data = yaml.safe_load(f)
 
+        try:
+            if "stix_dataset_type" not in data.keys():
+                print(f'[x]\tInvalid input file contents in: "{yaml_file}". Refer to usage!')
+                exit(5)
+        except:
+            print(f'[x]\tInvalid input file format in: "{yaml_file}". Refer to usage!')
+            exit(6)
+
         dataset = data.get('stix_dataset_type')
 
         # Ensuring dataset url is present and known to the code
@@ -67,7 +75,9 @@ def process_yaml_files():
             print(f"Error! File hasn't populated, error in getting url:{url}")
             exit(4)
 
-        threat_actor = data.get('threat_actor')
+        threat_actor = None
+        if "threat_actor" in data.keys():
+            threat_actor = data.get('threat_actor')
 
         # Second "main" part, converting the STIX data to the Nagivator format
         print(f'[+]\tConverting dataset...')
