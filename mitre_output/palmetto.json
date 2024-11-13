@@ -1,0 +1,360 @@
+{
+    "versions": {
+        "attack": "16",
+        "navigator": "5.1.0",
+        "layer": "4.5"
+    },
+    "name": "Techniques used by Palmetto Fusion",
+    "description": "Techniques used by the threat actor Palmetto Fusion",
+    "domain": "ics-attack",
+    "techniques": [
+        {
+            "techniqueID": "T0803",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0881",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0836",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0821",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0887",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0829",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0800",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0831",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0814",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0805",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0894",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0807",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0861",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0816",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0863",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0860",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0858",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0878",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0868",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0837",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0801",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0853",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0888",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0845",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0819",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0811",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0864",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0835",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0842",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0851",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0802",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0804",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0855",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0809",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0832",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0872",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0877",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0815",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0871",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0862",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0880",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0828",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0865",
+            "color": "#ff6666ff",
+            "comment": "Used by Palmetto Fusion"
+        },
+        {
+            "techniqueID": "T0895",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0817",
+            "color": "#ff6666ff",
+            "comment": "Used by Palmetto Fusion"
+        },
+        {
+            "techniqueID": "T0879",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0856",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0866",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0812",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0822",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0806",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0830",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0820",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0827",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0874",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0823",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0848",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0834",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0826",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0882",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0857",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0849",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0843",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0847",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0852",
+            "color": "#ff6666ff",
+            "comment": "Used by Palmetto Fusion"
+        },
+        {
+            "techniqueID": "T0891",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0859",
+            "color": "#ff6666ff",
+            "comment": "Used by Palmetto Fusion"
+        },
+        {
+            "techniqueID": "T0890",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0846",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0884",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0869",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0886",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0813",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0838",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0885",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0873",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0840",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0867",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0839",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0883",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0893",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0892",
+            "color": "#909190ff"
+        },
+        {
+            "techniqueID": "T0889",
+            "color": "#909190ff"
+        }
+    ],
+    "gradient": {
+        "colors": [
+            "#ff6666ff",
+            "#ffe766ff",
+            "#8ec843ff"
+        ],
+        "minValue": 0,
+        "maxValue": 100
+    },
+    "legendItems": [],
+    "metadata": [],
+    "sorting": 0
+}
