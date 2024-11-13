@@ -1,6 +1,5 @@
 import stix2
 import json
-import time
 
 # "Main" method, called externally
 def convert_dataset_main(stix_data, threat_actor_name, output_filepath, domain):
