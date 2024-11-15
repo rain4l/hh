@@ -12,4 +12,6 @@ threat_actor: [threat actor name/alias] (optional)
 ```
 See `mitre_input/example.yaml` for an example.
 
-Once you make a pull request with these input files, the output files will be populated on your branch.
+Once you make a pull request with these input files, the output files will be populated on your branch in a generated `mitre_output` directory as `[filename].json`. 
+
+An output file will not populate if one corresponding to its name already exists in the `mitre_output` directory. 
