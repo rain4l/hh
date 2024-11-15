@@ -23,7 +23,7 @@ def process_yaml_files():
 
     if not yaml_files:
         print('[x]\tNo YAML files found in mitre_input/')
-        return
+        exit(8)
 
     # Create directories if they do not exist yet
     if not os.path.exists(MITRE_OUTPUT_DIR):
@@ -38,7 +38,7 @@ def process_yaml_files():
 
         if os.path.exists(output_file):
             print(f'[x]\tSkipping {yaml_file}, output file already exists.')
-            continue
+            break
 
         # Acquiring the data from the yaml input file
         with open(yaml_file, 'r') as f:
@@ -68,8 +68,12 @@ def process_yaml_files():
 
         # Loading the remote file into a json object in the code
         print(f'[+]\tDownloading dataset at url {dataset_url}...')
-        with urllib.request.urlopen(dataset_url) as url:
-            dataset_content = json.load(url)
+        try:
+            with urllib.request.urlopen(dataset_url) as url:
+                dataset_content = json.load(url)
+        except:
+            print(f'[x]\tFailed to aquire file from URL: "{dataset_url}". Please check URLs')
+            exit(7)
 
         if dataset_content == None:
             print(f"Error! File hasn't populated, error in getting url:{url}")

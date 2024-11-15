@@ -55,6 +55,8 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath, domain):
     # Iterating through the techniques, adding them to the layer as we go
     print("[+]\tCollecting Technique IDs...")
     for technique in techniques:
+
+        # Fallback just in case the technique doesn't have an ID in the references
         technique_id = None
 
         # Getting the reference neessary for proper presentation of the technique in navigator, searching external references
@@ -63,16 +65,22 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath, domain):
             # Only mitre-attack sources have external IDs
             if external_reference.get('source_name') == 'mitre-attack':
                 technique_id = external_reference.get('external_id')
+
+                # No need to search further references if we've found the external id
                 break
         
         # If we can find a technique ID, then we can assign it a colour and add it to the layer
         if technique_id:
             technique_entry = {"techniqueID": technique_id}
+
             if technique.get('id') in used_technique_ids:
+                # Used techniques get a special colour
                 technique_entry["color"] = "#ff6666ff"
                 technique_entry["comment"] = f"Used by {threat_actor_name}"
             else:
                 technique_entry["color"] = "#909190ff"
+
+            # Add the entry to the layer
             layer_techniques.append(technique_entry)
 
     # Template taken from a blank layer, modified
