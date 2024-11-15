@@ -90,8 +90,8 @@ def convert_dataset_main(stix_data, threat_actor_name, output_filepath, domain):
             "navigator": "5.1.0",
             "layer": "4.5"
         },
-        "name": f"Techniques used by {threat_actor_name}",
-        "description": f"Techniques used by the threat actor {threat_actor_name}",
+        "name": f"Techniques used by {threat_actor_name} in {domain}",
+        "description": f"Techniques used by the threat actor {threat_actor_name} in {domain}",
         "domain": domain,
         "techniques": layer_techniques,
         "gradient": {

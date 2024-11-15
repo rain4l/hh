@@ -76,7 +76,7 @@ def process_yaml_files():
             exit(7)
 
         if dataset_content == None:
-            print(f"Error! File hasn't populated, error in getting url:{url}")
+            print(f"[x]\tError! File hasn't populated, error in getting url:{url}")
             exit(4)
 
         threat_actor = None
